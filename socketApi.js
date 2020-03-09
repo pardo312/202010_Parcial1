@@ -30,7 +30,7 @@ io.on('connection', function (socket) {
     })
     socket.on("reinicio",data => {
         Mongolib.getDatabase(db => {
-            Mongolib.reset(db, () => {}, data);
+            Mongolib.reset(db, () => {io.sockets.emit('reiniciar')}, data);
         })
     })
 });

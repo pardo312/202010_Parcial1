@@ -50,12 +50,17 @@ function render(data) {
 function reiniciar()
 {
     socket.emit("reinicio");
+    
+    return true;
+}
+socket.on("reiniciar", data => {   
     document.getElementById("inscripcion").style.display = '';
     document.getElementById("oferta").style.display = 'none';
     document.getElementById("reiniciar").style.display = 'none';
     document.getElementById("listaOfertas").innerHTML = "";
-    return true;
-}
+    ofertaMax = 0;
+    estadoActual =  "Oferta no aceptada";
+});
 function addUser() {
     nitActual = document.getElementById("nit").value;
     razonsocialActual =  document.getElementById("razonsocial").value;
@@ -68,6 +73,7 @@ function addUser() {
 function addOffer() {
     let PB = (Math.floor((Math.random() * 80) + 30)) / 100;
     let PO = (Math.floor((Math.random() * 80) + 30)) / 100; 
+    console.log(PO+ " hi "+ PB)
     if (PO>PB) {
         estadoActual = "Oferta Aceptada"
 
@@ -76,7 +82,6 @@ function addOffer() {
     let participante = {};
     if(!primeraOferta)
     {
-        console.log(ofertaMax + valorMas);
         participante= {
             nit: document.getElementById("nit").value,
             razonsocial: document.getElementById("razonsocial").value,
@@ -89,7 +94,7 @@ function addOffer() {
         participante= {
             nit: document.getElementById("nit").value,
             razonsocial: document.getElementById("razonsocial").value,
-            offer: 150000000,
+            offer: 1500000000,
             estado: estadoActual
         }
     }
