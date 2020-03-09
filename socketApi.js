@@ -17,31 +17,28 @@ io.on('connection', function (socket) {
     socket.on("new-offer", data => {
         Mongolib.getDatabase(db => {
             Mongolib.insertDocuments(db, () => {
-                socketApi.sendNotification(data)
+                socketApi.sendNotification()
             }, data);
         })
     })
     socket.on("new-user", data => {
         Mongolib.getDatabase(db => {
             Mongolib.insertDocuments(db, () => {
-                socketApi.sendNotificationUser(data)
+                socketApi.sendNotification()
             }, data);
+        })
+    })
+    socket.on("reinicio",data => {
+        Mongolib.getDatabase(db => {
+            Mongolib.reset(db, () => {}, data);
         })
     })
 });
 
-socketApi.sendNotification = (data) => {
+socketApi.sendNotification = () => {
     Mongolib.getDatabase(db => {
-        Mongolib.findDocuments(() => {
-            io.sockets.emit('offers', data);
-        });
-    })
-}
-
-socketApi.sendNotificationUser = (data) => {
-    Mongolib.getDatabase(db => {
-        Mongolib.findDocumentsUsers( () => {
-            io.sockets.emit('users', data);
+        Mongolib.findDocuments(db, docs => {
+            io.sockets.emit('offers', docs);
         });
     })
 }

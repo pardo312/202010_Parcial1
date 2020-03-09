@@ -7,10 +7,6 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var ofertasRouter = require('./routes/ofertas');
 
-var http = require('http');
-var server = http.createServer(app);
-
-var io = require('socket.io').listen(server);
 var app = express();
 
 // view engine setup

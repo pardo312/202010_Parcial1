@@ -38,25 +38,31 @@
                 botón para hacer ofertas solo se activa luego de 30 segundos desde la última oferta.
             </li>
         </ol>
-        <hr />
+       
+        <div id="inscripcion">
+            <hr />
         <h2>Formulario de inscripción</h2>
-        <form id="inscripcion"  style="display : ''" onsubmit="event.preventDefault(); addUser()">
-            <div class="form-group">
-                <label for="nit">NIT</label>
-                <input type="text" class="form-control" id="nit" placeholder="Número de Identificación Tributaria">
-            </div>
-            <div class="form-group">
-                <label for="razonsocial">Razón Social</label>
-                <input type="text" class="form-control" id="razonsocial" placeholder="Nombre del participante">
-            </div>
-            <button type="submit" class="btn btn-primary">Registrarse</button>
-        </form>
+            <form style="display : ''" onsubmit="event.preventDefault(); addUser()">
+                <div class="form-group">
+                    <label for="nit">NIT</label>
+                    <input type="text" class="form-control" id="nit" placeholder="Número de Identificación Tributaria">
+                </div>
+                <div class="form-group">
+                    <label for="razonsocial">Razón Social</label>
+                    <input type="text" class="form-control" id="razonsocial" placeholder="Nombre del participante">
+                </div>
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+            </form>
+        </div>
         <hr />
         <h2>Listado de ofertas</h2>
         <!--Reemplace estos párrafos por las ofertas reales recibidas-->
         <p id="listaOfertas"></p>
-        <input type="text" class="form-control" id="offer" placeholder="oferta">
-        <button onsubmit="event.preventDefault(); addOferta()" id="oferta" style="display : none" type="submit" class="btn btn-primary">Ofertar</button>
+            <button id="oferta"  style="display: none" onclick="addOffer()"  type="submit"
+                class="btn btn-primary">Ofertar</button>
+                <button id="reiniciar"  style="display: none" onclick="reiniciar()"  type="submit"
+                class="btn btn-primary">Reiniciar Subasta</button>
+                
     </div>
 
 
